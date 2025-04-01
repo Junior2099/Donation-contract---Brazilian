@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Contrato de Doação</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=t5GRNS5yIsHP&format=png&color=000000">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #218838;
+        }
+        
+        .section-title {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+            color: #444;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Contrato de Doação</h1>
+        <form id="contratoForm">
+            <h3 class="section-title">Dados do Doador</h3>
+            
+            <label for="nomeDoador">Nome do Doador:</label>
+            <input type="text" id="nomeDoador" required>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="nacionalidadeDoador">Nacionalidade:</label>
+                    <input type="text" id="nacionalidadeDoador" required>
+                </div>
+                <div class="form-col">
+                    <label for="estadoCivilDoador">Estado Civil:</label>
+                    <input type="text" id="estadoCivilDoador" required>
+                </div>
+            </div>
+            
+            <label for="profissaoDoador">Profissão:</label>
+            <input type="text" id="profissaoDoador" required>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="rgDoador">RG:</label>
+                    <input type="text" id="rgDoador" required>
+                </div>
+                <div class="form-col">
+                    <label for="cpfDoador">CPF:</label>
+                    <input type="text" id="cpfDoador" required>
+                </div>
+            </div>
+            
+            <label for="enderecoDoador">Endereço:</label>
+            <input type="text" id="enderecoDoador" placeholder="Rua, Avenida, etc." required>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="numeroDoador">Número:</label>
+                    <input type="text" id="numeroDoador" required>
+                </div>
+                <div class="form-col">
+                    <label for="bairroDoador">Bairro:</label>
+                    <input type="text" id="bairroDoador" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="cidadeDoador">Cidade:</label>
+                    <input type="text" id="cidadeDoador" required>
+                </div>
+                <div class="form-col">
+                    <label for="estadoDoador">Estado:</label>
+                    <input type="text" id="estadoDoador" required>
+                </div>
+                <div class="form-col">
+                    <label for="cepDoador">CEP:</label>
+                    <input type="text" id="cepDoador" required>
+                </div>
+            </div>
+            
+            <h3 class="section-title">Dados do Donatário</h3>
+            
+            <label for="nomeDonatario">Nome do Donatário:</label>
+            <input type="text" id="nomeDonatario" required>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="nacionalidadeDonatario">Nacionalidade:</label>
+                    <input type="text" id="nacionalidadeDonatario" required>
+                </div>
+                <div class="form-col">
+                    <label for="estadoCivilDonatario">Estado Civil:</label>
+                    <input type="text" id="estadoCivilDonatario" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="rgDonatario">RG:</label>
+                    <input type="text" id="rgDonatario" required>
+                </div>
+                <div class="form-col">
+                    <label for="cpfDonatario">CPF:</label>
+                    <input type="text" id="cpfDonatario" required>
+                </div>
+            </div>
+            
+            <label for="enderecoDonatario">Endereço:</label>
+            <input type="text" id="enderecoDonatario" placeholder="Rua, Avenida, etc." required>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="numeroDonatario">Número:</label>
+                    <input type="text" id="numeroDonatario" required>
+                </div>
+                <div class="form-col">
+                    <label for="bairroDonatario">Bairro:</label>
+                    <input type="text" id="bairroDonatario" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="cidadeDonatario">Cidade:</label>
+                    <input type="text" id="cidadeDonatario" required>
+                </div>
+                <div class="form-col">
+                    <label for="estadoDonatario">Estado:</label>
+                    <input type="text" id="estadoDonatario" required>
+                </div>
+                <div class="form-col">
+                    <label for="cepDonatario">CEP:</label>
+                    <input type="text" id="cepDonatario" required>
+                </div>
+            </div>
+            
+            <h3 class="section-title">Data do Contrato</h3>
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="diaContrato">Dia:</label>
+                    <input type="number" id="diaContrato" min="1" max="31" required>
+                </div>
+                <div class="form-col">
+                    <label for="mesContrato">Mês:</label>
+                    <select id="mesContrato" required>
+                        <option value="Janeiro">Janeiro</option>
+                        <option value="Fevereiro">Fevereiro</option>
+                        <option value="Março">Março</option>
+                        <option value="Abril">Abril</option>
+                        <option value="Maio">Maio</option>
+                        <option value="Junho">Junho</option>
+                        <option value="Julho">Julho</option>
+                        <option value="Agosto">Agosto</option>
+                        <option value="Setembro">Setembro</option>
+                        <option value="Outubro">Outubro</option>
+                        <option value="Novembro">Novembro</option>
+                        <option value="Dezembro">Dezembro</option>
+                    </select>
+                </div>
+                <div class="form-col">
+                    <label for="anoContrato">Ano:</label>
+                    <input type="number" id="anoContrato" min="2025" value="2025" required>
+                </div>
+            </div>
+            
+            <button type="button" onclick="gerarPDF()">Gerar PDF</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        window.jsPDF = window.jspdf.jsPDF;
+        
+        $(document).ready(function() {
+            $('#cpfDoador, #cpfDonatario').mask('000.000.000-00');
+            $('#rgDoador, #rgDonatario').mask('00.000.000-0');
+            $('#cepDoador, #cepDonatario').mask('00000-000');
+        });
+        
+        function gerarPDF() {
+            const doc = new jsPDF();
+            
+        
+            const nomeDoador = document.getElementById('nomeDoador').value;
+            const nacionalidadeDoador = document.getElementById('nacionalidadeDoador').value;
+            const estadoCivilDoador = document.getElementById('estadoCivilDoador').value;
+            const profissaoDoador = document.getElementById('profissaoDoador').value;
+            const rgDoador = document.getElementById('rgDoador').value;
+            const cpfDoador = document.getElementById('cpfDoador').value;
+            const enderecoDoador = document.getElementById('enderecoDoador').value;
+            const numeroDoador = document.getElementById('numeroDoador').value;
+            const bairroDoador = document.getElementById('bairroDoador').value;
+            const cidadeDoador = document.getElementById('cidadeDoador').value;
+            const estadoDoador = document.getElementById('estadoDoador').value;
+            const cepDoador = document.getElementById('cepDoador').value;
+            
+    
+            const nomeDonatario = document.getElementById('nomeDonatario').value;
+            const nacionalidadeDonatario = document.getElementById('nacionalidadeDonatario').value;
+            const estadoCivilDonatario = document.getElementById('estadoCivilDonatario').value;
+            const rgDonatario = document.getElementById('rgDonatario').value;
+            const cpfDonatario = document.getElementById('cpfDonatario').value;
+            const enderecoDonatario = document.getElementById('enderecoDonatario').value;
+            const numeroDonatario = document.getElementById('numeroDonatario').value;
+            const bairroDonatario = document.getElementById('bairroDonatario').value;
+            const cidadeDonatario = document.getElementById('cidadeDonatario').value;
+            const estadoDonatario = document.getElementById('estadoDonatario').value;
+            const cepDonatario = document.getElementById('cepDonatario').value;
+    
+            const diaContrato = document.getElementById('diaContrato').value;
+            const mesContrato = document.getElementById('mesContrato').value;
+            const anoContrato = document.getElementById('anoContrato').value;
+            
+  
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(16);
+            doc.text("CONTRATO DE DOAÇÃO", 105, 20, { align: "center" });
+            
+      
+            doc.setLineWidth(0.5);
+            doc.line(20, 25, 190, 25);
+            
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(12);
+            
+        
+            let y = 40;
+            doc.setFont("helvetica", "bold");
+            doc.text("QUALIFICAÇÃO DAS PARTES", 105, y, { align: "center" });
+            y += 10;
+            
+            doc.setFont("helvetica", "bold");
+            doc.text("DOADOR:", 20, y);
+            doc.setFont("helvetica", "normal");
+            
+           
+            const textoDoador = `${nomeDoador}, ${nacionalidadeDoador}, ${estadoCivilDoador}, ${profissaoDoador}, portador(a) do RG nº ${rgDoador}, inscrito(a) no CPF sob nº ${cpfDoador}, residente e domiciliado(a) na ${enderecoDoador}, nº ${numeroDoador}, Bairro ${bairroDoador}, ${cidadeDoador}, ${estadoDoador}, CEP: ${cepDoador}.`;
+            
+    
+            const linhasDoador = doc.splitTextToSize(textoDoador, 170);
+            y += 7;
+            for (let i = 0; i < linhasDoador.length; i++) {
+                doc.text(linhasDoador[i], 20, y);
+                y += 7;
+            }
+            
+            y += 7;
+            
+           
+            doc.setFont("helvetica", "bold");
+            doc.text("DONATÁRIO:", 20, y);
+            doc.setFont("helvetica", "normal");
+            
+     
+            const textoDonatario = `${nomeDonatario}, ${nacionalidadeDonatario}, ${estadoCivilDonatario}, portador(a) do RG nº ${rgDonatario}, inscrito(a) no CPF sob nº ${cpfDonatario}, residente e domiciliado(a) na ${enderecoDonatario}, nº ${numeroDonatario}, Bairro ${bairroDonatario}, ${cidadeDonatario}, ${estadoDonatario}, CEP: ${cepDonatario}.`;
+            
+   
+            const linhasDonatario = doc.splitTextToSize(textoDonatario, 170);
+            y += 7;
+            for (let i = 0; i < linhasDonatario.length; i++) {
+                doc.text(linhasDonatario[i], 20, y);
+                y += 7;
+            }
+            
+            y += 15;
+            
+      
+            doc.setFont("helvetica", "bold");
+            doc.text("CLÁUSULAS E CONDIÇÕES", 105, y, { align: "center" });
+            y += 10;
+            
+            doc.setFont("helvetica", "normal");
+            const clausulas = [
+                "CLÁUSULA PRIMEIRA - DO OBJETO",
+                "Pelo presente instrumento particular e na melhor forma de direito, o DOADOR, livre e espontaneamente, doa ao DONATÁRIO, que aceita, sem imposição de quaisquer condições ou encargos, nos termos do Artigo 538 e seguintes do Código Civil Brasileiro.",
+                
+                "CLÁUSULA SEGUNDA - DA IRREVOGABILIDADE",
+                "A presente doação é feita em caráter irrevogável e irretratável, não podendo o DOADOR reclamá-la a qualquer título.",
+                
+                "CLÁUSULA TERCEIRA - DISPOSIÇÕES FINAIS",
+                "E, por estarem assim, justos e contratados, assinam o presente instrumento em duas vias de igual teor e forma, na presença das testemunhas abaixo, para que produza seus jurídicos e legais efeitos."
+            ];
+            
+            for (let i = 0; i < clausulas.length; i++) {
+                if (i % 2 === 0) {
+              
+                    doc.setFont("helvetica", "bold");
+                    doc.text(clausulas[i], 20, y);
+                    y += 7;
+                } else {
+           
+                    doc.setFont("helvetica", "normal");
+                    const linhasClausula = doc.splitTextToSize(clausulas[i], 170);
+                    for (let j = 0; j < linhasClausula.length; j++) {
+                        doc.text(linhasClausula[j], 20, y);
+                        y += 7;
+                    }
+                    y += 7;
+                }
+            }
+            
+     
+            y += 15;
+            doc.text(`${cidadeDoador}, ${diaContrato} de ${mesContrato} de ${anoContrato}.`, 105, y, { align: "center" });
+            
+            y += 25;
+            doc.line(35, y, 95, y); 
+            doc.line(115, y, 175, y); 
+            
+            y += 7;
+            doc.text("Doador", 65, y, { align: "center" });
+            doc.text("Donatário", 145, y, { align: "center" });
+            
+              
+            doc.save('contrato_doacao.pdf');
+        }
+    </script>
+</body>
+</html>
