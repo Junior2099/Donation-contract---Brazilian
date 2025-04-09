@@ -40,7 +40,7 @@
             font-weight: bold;
         }
         
-        input, select {
+        input, select, textarea {
             margin-bottom: 15px;
             padding: 10px;
             border: 1px solid #ccc;
@@ -74,6 +74,11 @@
 
         .form-col {
             flex: 1;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
         }
     </style>
 
@@ -195,6 +200,10 @@
                 </div>
             </div>
             
+            <h3 class="section-title">Objeto da Doação</h3>
+            <label for="objetoDoacao">Descrição detalhada do objeto da doação:</label>
+            <textarea id="objetoDoacao" placeholder="Exemplo: Um veículo automotor, marca Ford, modelo Ka, ano 2020, cor preta, placa ABC-1234, RENAVAM 12345678901" required></textarea>
+            
             <h3 class="section-title">Data do Contrato</h3>
             <div class="form-row">
                 <div class="form-col">
@@ -241,7 +250,7 @@
         function gerarPDF() {
             const doc = new jsPDF();
             
-        
+          
             const nomeDoador = document.getElementById('nomeDoador').value;
             const nacionalidadeDoador = document.getElementById('nacionalidadeDoador').value;
             const estadoCivilDoador = document.getElementById('estadoCivilDoador').value;
@@ -255,7 +264,7 @@
             const estadoDoador = document.getElementById('estadoDoador').value;
             const cepDoador = document.getElementById('cepDoador').value;
             
-    
+   
             const nomeDonatario = document.getElementById('nomeDonatario').value;
             const nacionalidadeDonatario = document.getElementById('nacionalidadeDonatario').value;
             const estadoCivilDonatario = document.getElementById('estadoCivilDonatario').value;
@@ -267,17 +276,21 @@
             const cidadeDonatario = document.getElementById('cidadeDonatario').value;
             const estadoDonatario = document.getElementById('estadoDonatario').value;
             const cepDonatario = document.getElementById('cepDonatario').value;
-    
+            
+
+            const objetoDoacao = document.getElementById('objetoDoacao').value;
+
+     
             const diaContrato = document.getElementById('diaContrato').value;
             const mesContrato = document.getElementById('mesContrato').value;
             const anoContrato = document.getElementById('anoContrato').value;
             
-  
+    
             doc.setFont("helvetica", "bold");
             doc.setFontSize(16);
             doc.text("CONTRATO DE DOAÇÃO", 105, 20, { align: "center" });
             
-      
+     
             doc.setLineWidth(0.5);
             doc.line(20, 25, 190, 25);
             
@@ -294,10 +307,10 @@
             doc.text("DOADOR:", 20, y);
             doc.setFont("helvetica", "normal");
             
-           
+     
             const textoDoador = `${nomeDoador}, ${nacionalidadeDoador}, ${estadoCivilDoador}, ${profissaoDoador}, portador(a) do RG nº ${rgDoador}, inscrito(a) no CPF sob nº ${cpfDoador}, residente e domiciliado(a) na ${enderecoDoador}, nº ${numeroDoador}, Bairro ${bairroDoador}, ${cidadeDoador}, ${estadoDoador}, CEP: ${cepDoador}.`;
             
-    
+        
             const linhasDoador = doc.splitTextToSize(textoDoador, 170);
             y += 7;
             for (let i = 0; i < linhasDoador.length; i++) {
@@ -307,15 +320,15 @@
             
             y += 7;
             
-           
+
             doc.setFont("helvetica", "bold");
             doc.text("DONATÁRIO:", 20, y);
             doc.setFont("helvetica", "normal");
             
-     
+    
             const textoDonatario = `${nomeDonatario}, ${nacionalidadeDonatario}, ${estadoCivilDonatario}, portador(a) do RG nº ${rgDonatario}, inscrito(a) no CPF sob nº ${cpfDonatario}, residente e domiciliado(a) na ${enderecoDonatario}, nº ${numeroDonatario}, Bairro ${bairroDonatario}, ${cidadeDonatario}, ${estadoDonatario}, CEP: ${cepDonatario}.`;
             
-   
+          
             const linhasDonatario = doc.splitTextToSize(textoDonatario, 170);
             y += 7;
             for (let i = 0; i < linhasDonatario.length; i++) {
@@ -325,7 +338,7 @@
             
             y += 15;
             
-      
+
             doc.setFont("helvetica", "bold");
             doc.text("CLÁUSULAS E CONDIÇÕES", 105, y, { align: "center" });
             y += 10;
@@ -333,7 +346,7 @@
             doc.setFont("helvetica", "normal");
             const clausulas = [
                 "CLÁUSULA PRIMEIRA - DO OBJETO",
-                "Pelo presente instrumento particular e na melhor forma de direito, o DOADOR, livre e espontaneamente, doa ao DONATÁRIO, que aceita, sem imposição de quaisquer condições ou encargos, nos termos do Artigo 538 e seguintes do Código Civil Brasileiro.",
+                `Pelo presente instrumento particular e na melhor forma de direito, o DOADOR, livre e espontaneamente, doa ao DONATÁRIO, que aceita, sem imposição de quaisquer condições ou encargos, nos termos do Artigo 538 e seguintes do Código Civil Brasileiro, o seguinte bem: ${objetoDoacao}.`,
                 
                 "CLÁUSULA SEGUNDA - DA IRREVOGABILIDADE",
                 "A presente doação é feita em caráter irrevogável e irretratável, não podendo o DOADOR reclamá-la a qualquer título.",
@@ -344,12 +357,12 @@
             
             for (let i = 0; i < clausulas.length; i++) {
                 if (i % 2 === 0) {
-              
+     
                     doc.setFont("helvetica", "bold");
                     doc.text(clausulas[i], 20, y);
                     y += 7;
                 } else {
-           
+               
                     doc.setFont("helvetica", "normal");
                     const linhasClausula = doc.splitTextToSize(clausulas[i], 170);
                     for (let j = 0; j < linhasClausula.length; j++) {
@@ -360,10 +373,9 @@
                 }
             }
             
-     
             y += 15;
             doc.text(`${cidadeDoador}, ${diaContrato} de ${mesContrato} de ${anoContrato}.`, 105, y, { align: "center" });
-            
+ 
             y += 25;
             doc.line(35, y, 95, y); 
             doc.line(115, y, 175, y); 
@@ -372,7 +384,6 @@
             doc.text("Doador", 65, y, { align: "center" });
             doc.text("Donatário", 145, y, { align: "center" });
             
-              
             doc.save('contrato_doacao.pdf');
         }
     </script>
